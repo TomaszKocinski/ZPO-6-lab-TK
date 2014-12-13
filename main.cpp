@@ -7,7 +7,7 @@
 #include<algorithm>
 using namespace std;
 int main(int argc, char* argv[]) {
-    ifstream file("genyEColi.txt");
+	ifstream file("genyEColi.txt");
 	string line,line2;
 	vector<pair<string,string>> wekt;
 	while(getline(file, line) && getline(file, line2)){
