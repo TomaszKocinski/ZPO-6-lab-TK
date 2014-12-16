@@ -15,9 +15,8 @@ int main(int argc, char* argv[]) {
 	file.close();
 	cout<<"wstawianie do multimap\n";
 	multimap<int,list<string>> final;
-	for(map<string,list<string>>::iterator w=mapa.begin();w!=mapa.end();w++){
+	for(map<string,list<string>>::iterator w=mapa.begin();w!=mapa.end();w++)
 		final.insert(pair<int,list<string>>((*w).second.size(),(*w).second));
-	}
 	cout<<"wypisywanie do pliku\n";
 	mapa.clear();
 	ofstream out("exx.txt");
