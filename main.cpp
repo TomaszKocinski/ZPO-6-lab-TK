@@ -16,24 +16,20 @@ int main(int argc, char* argv[]) {
 		sad.second=line;
 		wekt.push_back(sad);
 	}
-	sort(wekt.begin(),wekt.end());
-	map<string,pair<list<string>,int>> mapa;
+	map<string,list<string>> mapa;
 	for(vector<pair<string,string>>::iterator w=wekt.begin();w!=wekt.end();w++){
 		list<string> list_temp;
-		pair<list<string>,int> temp;
 		string str_temp;
-		temp.second=mapa[(*w).first].second;
-		temp.first=mapa[(*w).first].first;
-		temp.second++;
+		list_temp=mapa[(*w).first];
 		str_temp=(*w).second;
-		temp.first.push_back(str_temp);
-		mapa[(*w).first]=temp;
+		list_temp.push_back(str_temp);
+		mapa[(*w).first]=list_temp;
 	}
 	multimap<int,list<string>> final;
-	for(map<string,pair<list<string>,int>>::iterator w=mapa.begin();w!=mapa.end();w++){
+	for(map<string,list<string>>::iterator w=mapa.begin();w!=mapa.end();w++){
 		pair<int,list<string>> temp;
-		temp.first=(*w).second.second;
-		temp.second=(*w).second.first;
+		temp.first=(*w).second.size();
+		temp.second=(*w).second;
 		final.insert(temp);
 	}
 	ofstream out("exx.txt");
