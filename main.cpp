@@ -8,22 +8,12 @@
 using namespace std;
 int main(int argc, char* argv[]) {
 	ifstream file("genyEColi.txt");
-	string line,line2;
-	vector<pair<string,string>> wekt;
-	while(getline(file, line) && getline(file, line2)){
-		pair<string,string> sad;
-		sad.first=line2;
-		sad.second=line;
-		wekt.push_back(sad);
-	}
+	string dna_temp,name_temp;
 	map<string,list<string>> mapa;
-	for(vector<pair<string,string>>::iterator w=wekt.begin();w!=wekt.end();w++){
-		list<string> list_temp;
-		string str_temp;
-		list_temp=mapa[(*w).first];
-		str_temp=(*w).second;
-		list_temp.push_back(str_temp);
-		mapa[(*w).first]=list_temp;
+	while(getline(file, name_temp) && getline(file, dna_temp)){
+		list<string> list_temp=mapa[dna_temp];
+		list_temp.push_back(name_temp);
+		mapa[dna_temp]=list_temp;
 	}
 	multimap<int,list<string>> final;
 	for(map<string,list<string>>::iterator w=mapa.begin();w!=mapa.end();w++){
@@ -32,6 +22,7 @@ int main(int argc, char* argv[]) {
 		temp.second=(*w).second;
 		final.insert(temp);
 	}
+	mapa.clear();
 	ofstream out("exx.txt");
 	for(multimap<int,list<string>>::iterator ite=final.end();ite!=final.begin();ite--){
 		if(ite==final.end()) ite--;
