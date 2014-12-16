@@ -3,7 +3,6 @@
 #include<string>	//string
 #include<list>		//list
 #include<map>		//map,multimap
-#include<iterator>	//iteratory dla map i multimap
 using namespace std;
 int main(int argc, char* argv[]) {
 	ifstream file("genyEColi.txt");
