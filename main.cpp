@@ -1,11 +1,9 @@
-#include<fstream>
-#include<iostream>
-#include<string>
-#include<vector>
-#include<list>
-#include<map>
-#include<iterator>
-#include<algorithm>
+#include<fstream>	//ifstream ofstream
+#include<iostream>	//cout
+#include<string>	//string
+#include<list>		//list
+#include<map>		//map,multimap
+#include<iterator>	//iteratory dla map i multimap
 using namespace std;
 int main(int argc, char* argv[]) {
 	ifstream file("genyEColi.txt");
@@ -17,6 +15,7 @@ int main(int argc, char* argv[]) {
 		list_temp.push_back(name_temp);
 		mapa[dna_temp]=list_temp;
 	}
+	file.close();
 	cout<<"wstawianie do multimap\n";
 	multimap<int,list<string>> final;
 	for(map<string,list<string>>::iterator w=mapa.begin();w!=mapa.end();w++){
@@ -28,11 +27,11 @@ int main(int argc, char* argv[]) {
 	cout<<"wypisywanie do pliku\n";
 	mapa.clear();
 	ofstream out("exx.txt");
-	for(multimap<int,list<string>>::iterator ite=final.end();ite!=final.begin();ite--){
-		if(ite==final.end()) ite--;
+	for(multimap<int,list<string>>::reverse_iterator ite=final.rbegin();ite!=final.rend();ite++){
 		out<<(*ite).first<<'\n';
 		for(list<string>::iterator a=(*ite).second.begin();a!=(*ite).second.end();a++)
 			out<<*a<<'\n';
 		out<<'\n';
 	}
+	out.close();
 }
