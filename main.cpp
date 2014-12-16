@@ -10,19 +10,13 @@ int main(int argc, char* argv[]) {
 	string dna_temp,name_temp;
 	map<string,list<string>> mapa;
 	cout<<"wstawianie do map\n";
-	while(getline(file, name_temp) && getline(file, dna_temp)){
-		list<string> list_temp=mapa[dna_temp];
-		list_temp.push_back(name_temp);
-		mapa[dna_temp]=list_temp;
-	}
+	while(getline(file, name_temp) && getline(file, dna_temp))
+		mapa[dna_temp].push_back(name_temp);
 	file.close();
 	cout<<"wstawianie do multimap\n";
 	multimap<int,list<string>> final;
 	for(map<string,list<string>>::iterator w=mapa.begin();w!=mapa.end();w++){
-		pair<int,list<string>> temp;
-		temp.first=(*w).second.size();
-		temp.second=(*w).second;
-		final.insert(temp);
+		final.insert(pair<int,list<string>>((*w).second.size(),(*w).second));
 	}
 	cout<<"wypisywanie do pliku\n";
 	mapa.clear();
